@@ -1,0 +1,60 @@
+[versions]
+agp = "8.3.2"
+kotlin = "2.0.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+lifecycleViewmodelKtx = "2.8.2"
+material = "1.12.0"
+roomKtx = "2.6.1"
+dagger2 = "2.51"
+constraintlayout = "2.1.4"
+navigationFragmentKtx = "2.7.7"
+activity = "1.9.0"
+cicerone = "7.1"
+ksp = "2.0.0-1.0.22"
+coil = "2.6.0"
+retrofit = "2.9.0"
+kotlinxSerializationJson = "1.7.1"
+retrofit2KotlinxSerializationConverter = "0.8.0"
+serialization = "2.0.0"
+coroutines = "1.7.3"
+
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomKtx" }
+dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger2" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger2" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+cicerone = { module = "com.github.terrakok:cicerone", version.ref = "cicerone" }
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+
+
+# coroutines Libraries
+coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# Remote Libraries
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
+
