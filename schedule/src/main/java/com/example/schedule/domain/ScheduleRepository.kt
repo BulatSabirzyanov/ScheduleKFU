@@ -4,5 +4,5 @@ import com.example.schedule.data.remote.response.SubjectsResponse
 
 interface ScheduleRepository {
 
-    suspend fun getSchedule(groupId: String, year: String, semester: String) : SubjectsResponse
+    suspend fun getSchedule(groupId: String) : SubjectsResponse
 }

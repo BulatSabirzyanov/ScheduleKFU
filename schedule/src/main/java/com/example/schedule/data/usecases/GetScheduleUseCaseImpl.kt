@@ -11,9 +11,7 @@ class GetScheduleUseCaseImpl @Inject constructor(
 
     override suspend fun getSchedule(
         groupId: String,
-        year: String,
-        semester: String
     ): SubjectsResponse {
-        return repository.getSchedule(groupId, year, semester)
+        return repository.getSchedule(groupId)
     }
 }

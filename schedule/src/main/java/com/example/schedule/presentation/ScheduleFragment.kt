@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.schedule.databinding.FragmentScheduleBinding
 import com.example.schedule.di.ScheduleComponentHolder
 import com.example.schedule.presentation.adapter.ScheduleAdapter
+import com.example.schedule.presentation.adapter.VerticalSpaceItemDecoration
 import com.example.schedule.presentation.model.SubjectUi
 import com.example.schedule.presentation.states.ScheduleState
 import com.example.schedule.utils.ViewModelFactory
@@ -24,9 +25,7 @@ import javax.inject.Inject
 class ScheduleFragment : Fragment() {
 
     private lateinit var groupId: String
-    private lateinit var year: String
-    private lateinit var semester: String
-
+    private  var position: Int? = 0
     private lateinit var binding: FragmentScheduleBinding
 
     private var scheduleAdapter = ScheduleAdapter()
@@ -43,9 +42,8 @@ class ScheduleFragment : Fragment() {
 
     private fun initFieldFromBundle() {
         arguments?.let {
-            groupId = it.getString(GROUP_ID, DEFAULT_GROUP_ID)
-            year = it.getString(YEAR, DEFAULT_YEAR)
-            semester = it.getString(SEMESTER, DEFAULT_SEMESTER)
+            groupId = it.getString(GROUP_ID, "")
+            position  = it.getInt(POSITION, 0)
         }
     }
 
@@ -61,9 +59,12 @@ class ScheduleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadSchedule(groupId, year, semester)
+        position?.let { viewModel.loadSchedule(groupId, it) }
+        val spacingDp = 10f
+        val itemVerticalDecoration = VerticalSpaceItemDecoration(spacingDp)
         with(binding) {
             recycler.adapter = scheduleAdapter
+            recycler.addItemDecoration(itemVerticalDecoration)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -74,11 +75,9 @@ class ScheduleFragment : Fragment() {
                         is ScheduleState.Success -> handleSuccess(state.subjects)
                         is ScheduleState.Error -> handleError(state.message)
                     }
-
                 }
             }
         }
-
     }
 
     private fun handleLoading() {
@@ -103,19 +102,13 @@ class ScheduleFragment : Fragment() {
     companion object {
 
         private const val GROUP_ID = "groupId"
-        private const val YEAR = "year"
-        private const val SEMESTER = "semester"
+        private const val POSITION =  "position"
 
-        private const val DEFAULT_GROUP_ID = "11-109"
-        private const val DEFAULT_YEAR = "2024"
-        private const val DEFAULT_SEMESTER = "2"
-
-        fun newInstance(groupId: String, year: String, semester: String): ScheduleFragment =
+        fun newInstance(position: Int, groupId: String): ScheduleFragment =
             ScheduleFragment().apply {
                 arguments = Bundle().apply {
-                    putString("GROUP_ID", groupId)
-                    putString("year", year)
-                    putString("semester", semester)
+                    putInt(POSITION, position)
+                    putString(GROUP_ID, groupId)
                 }
             }
     }

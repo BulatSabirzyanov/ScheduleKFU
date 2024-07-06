@@ -33,6 +33,7 @@ class ScheduleAdapter(
                 tVTeacherName.text = item.teacherName
                 tVBuildingName.text = item.buildingName
                 tVTotalTimeSchedule.text = item.time
+                tVAuditoryId.text = item.numAuditoriumSchedule
             }
         }
     }

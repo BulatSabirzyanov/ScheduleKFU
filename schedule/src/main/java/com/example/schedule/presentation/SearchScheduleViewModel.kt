@@ -8,8 +8,8 @@ class SearchScheduleViewModel @Inject constructor(
     private val router: ScheduleRouter
 ) : ViewModel() {
 
-    fun navigateToSchedule(groupId: String, year: String, semester: String){
-        router.navigateToSchedule(groupId, year, semester)
+    fun navigateToViewPager(groupId: String){
+        router.navigateToViewPager(groupId)
     }
 
 

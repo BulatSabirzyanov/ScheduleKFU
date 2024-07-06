@@ -13,8 +13,12 @@ class ScheduleRouterWrapper @Inject constructor(
         router.navigateTo(Screens.SearchSchedule())
     }
 
-    override fun navigateToSchedule(groupId: String, year: String, semester: String) {
-        router.navigateTo(Screens.Schedule(groupId, year, semester))
+    override fun navigateToViewPager(groupId: String) {
+        router.navigateTo(Screens.ViewPager(groupId))
+    }
+
+    override fun navigateToSchedule(position: Int, groupId: String) {
+        router.navigateTo(Screens.Schedule(position, groupId))
     }
 
     override fun exit() {

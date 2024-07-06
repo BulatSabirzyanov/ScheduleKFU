@@ -10,10 +10,8 @@ class ScheduleRepositoryImpl @Inject constructor(
 //    private val local: ScheduleListDao,
 ) : ScheduleRepository {
     override suspend fun getSchedule(
-        groupId: String,
-        year: String,
-        semester: String
+        groupId: String
     ): SubjectsResponse {
-        return remote.getGroupSchedule(groupId, year, semester)
+        return remote.getGroupSchedule(groupId)
     }
 }

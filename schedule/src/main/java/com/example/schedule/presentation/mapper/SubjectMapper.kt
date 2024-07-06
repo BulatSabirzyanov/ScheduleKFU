@@ -12,7 +12,8 @@ class SubjectMapper @Inject constructor() {
                 subjectName = subject.subjectName,
                 teacherName = "${subject.teacherLastname} ${subject.teacherFirstname} ${subject.teacherMiddleName}",
                 buildingName = subject.buildingName,
-                time = "${subject.beginTimeSchedule} - ${subject.endTimeSchedule}"
+                time = "${subject.beginTimeSchedule}\n\t\t\t-\n${subject.endTimeSchedule}",
+                numAuditoriumSchedule = " ауд. ${subject.numAuditoriumSchedule}"
             )
         }
     }

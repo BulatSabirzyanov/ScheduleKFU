@@ -1,6 +1,5 @@
 package com.example.schedule.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.schedule.data.remote.response.Subjects
@@ -18,7 +17,7 @@ import javax.inject.Inject
 class ScheduleViewModel @Inject constructor(
     private val getScheduleUseCase: GetScheduleUseCase,
     private val mapper: SubjectMapper
-) : ViewModel(){
+) : ViewModel() {
 
     private val _schedule = MutableStateFlow<ScheduleState>(ScheduleState.Loading)
     val schedule: StateFlow<ScheduleState> = _schedule.asStateFlow()
@@ -26,18 +25,20 @@ class ScheduleViewModel @Inject constructor(
     private var subjectsList = mutableListOf<Subjects>()
 
 
-    fun loadSchedule(groupId: String, year: String, semester: String) {
+    fun loadSchedule(groupId: String, position: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                subjectsList = getScheduleUseCase.getSchedule(groupId,year,semester).subjects.toMutableList()
-                Log.d("123456",subjectsList.toString())
+                subjectsList =
+                    getScheduleUseCase.getSchedule(groupId).subjects.toMutableList().filter {
+                        it.dayWeekSchedule == position
+                    }.toMutableList()
+
                 _schedule.emit(ScheduleState.Success(mapper.toUi(subjectsList)))
 
-            }catch (e: CancellationException) {
+            } catch (e: CancellationException) {
                 throw e
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 _schedule.emit(ScheduleState.Error(e.message))
-                Log.e("123",e.message.toString())
             }
         }
     }

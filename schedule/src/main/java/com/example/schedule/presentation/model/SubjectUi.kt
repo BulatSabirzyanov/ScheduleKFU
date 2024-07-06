@@ -5,5 +5,6 @@ data class SubjectUi (
     val subjectName: String,
     val teacherName: String,
     val buildingName: String,
-    val time: String
+    val time: String,
+    val numAuditoriumSchedule : String
 )

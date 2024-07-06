@@ -40,8 +40,8 @@ class SearchScheduleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             btnSearch.setOnClickListener {
-                val groupId = "05-206"
-                viewModel.navigateToSchedule(groupId,"2023", "2")
+                val groupId = eTGroupId.text.toString()
+                viewModel.navigateToViewPager(groupId)
             }
         }
     }

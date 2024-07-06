@@ -4,7 +4,9 @@ interface ScheduleRouter {
 
     fun navigateToSearchSchedule()
 
-    fun navigateToSchedule(groupId: String, year: String, semester: String)
+    fun navigateToViewPager(groupId: String)
+
+    fun navigateToSchedule(position: Int, groupId: String)
 
     fun exit()
 }
